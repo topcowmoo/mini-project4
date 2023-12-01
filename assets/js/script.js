@@ -83,4 +83,30 @@ function setLosses() {
     localStorage.setItem("loseCounter", loseCounter);
 }
 
-init();
+function getWins() {
+    var storedWins = localStorage.getItem("winCounter");
+    if (storedWins === null) {
+        winCounter = 0;
+    } else {
+        winCounter = storedWins;
+    }
+    win.textContent = winCounter;
+}
+
+function getLosses() {
+
+    var storedLosses = localStorage.getItem("loseCount");
+    if (storedLosses === null) {
+        loseCounter = 0;
+    } else {
+        loseCounter = storedLosses;
+    }
+    lose.textContent = loseCounter;
+}
+
+function checkWin() {
+    if (chosenWord === blanksLetters.join(" ")) {
+        isWin = true;
+    }
+}
+
