@@ -110,3 +110,47 @@ function checkWin() {
     }
 }
 
+function checkLetters(letter) {
+    var letterInWord = false;
+    for (var i = 0; i < numBlanks; i++) {
+        if (choseWord[i] === letter) {
+            letterInWord = true;
+        }
+}
+if (letterInWord) {
+    for (var j = 0; j < numBlanks; j++) {
+        if (chosenWord[j] === letter) {
+            blanksLetters[j] = letter;
+        }
+    }
+    wordBlank.textContent = blanksLetters.join(" ");
+    }
+}
+
+document.addEventListener("keydown", function(event) {
+    if (timerCount === 0) {
+        return;
+    }
+    var key = event.key.toLowerCase();
+    var alphabetNumericCharacters = "abcdefghijklmnopqrstuvwxyz0123456789".split("");
+    if (alphabetNumericCharacters.includes(key)) {
+        var letterGussed = event.key;
+        checkLetters(letterGussed);
+        checkWin();
+    } 
+});
+
+startButton.addEventListener("click", startGame);
+
+init();
+
+var resetButton = document.querySelector(".reset-button");
+
+function resetGame() {
+    winCounter = 0;
+    loseCounter = 0;
+    setWins()
+    setLosses()
+}
+
+resetButton.addEventListener("click", resetGame);
