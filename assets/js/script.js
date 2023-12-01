@@ -29,3 +29,58 @@ function startGame() {
     renderBlanks()
     startTimer()
 }
+
+function winGame() {
+    wordBlank.textContent = "YOU WIN!!!";
+    winCounter++;
+    startButton.disabled = false;
+    setWins()
+}
+
+function loseGame() {
+    wordBlank.textContent = "GAME OVER";
+    loseCounter++;
+    startButton.disabled = false;
+    setLosses()
+}
+
+function startTimer() {
+    timer = setInterval(function () {
+        timerCount--;
+        timerElement.textContent = timerCount;
+        if (timerCount >= 0) {
+            if (isWin && timerCount > 0) {
+                clearInterval(timer);
+                winGame();
+            }
+        }
+        if (timerCount === 0) {
+            clearInterval(timer);
+            loseGame();
+        }
+    }, 1000);
+}
+
+function renderBlanks() {
+    chosenWord = words[Math.floor(Math.random() * words.length)];
+    lettersInChosenWord = chosenWord.split("");
+    numBlanks = lettersInChosenWord.length;
+    blanksLetters = [];
+    for (var i = 0; i < numBlanks; i++) {
+        blanksLetters.push("_");
+    }
+    wordBlank.textContent = blanksLetters.join(" ");
+}
+
+
+function setWins() {
+    win.textContent = winCounter;
+    localStorage.setItem("winCounter", winCounter);
+}
+
+function setLosses() {
+    lose.textContent = loseCounter;
+    localStorage.setItem("loseCounter", loseCounter);
+}
+
+init();
