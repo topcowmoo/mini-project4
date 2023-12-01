@@ -1,4 +1,4 @@
-var wordBlank = document.querySelector(".word-blank");
+var wordBlank = document.querySelector(".word-blanks");
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
@@ -69,7 +69,7 @@ function renderBlanks() {
     for (var i = 0; i < numBlanks; i++) {
         blanksLetters.push("_");
     }
-    wordBlank.textContent = blanksLetters.join(" ");
+    wordBlank.textContent = blanksLetters.join("");
 }
 
 
@@ -80,7 +80,7 @@ function setWins() {
 
 function setLosses() {
     lose.textContent = loseCounter;
-    localStorage.setItem("loseCounter", loseCounter);
+    localStorage.setItem("loseCount", loseCounter);
 }
 
 function getWins() {
@@ -94,15 +94,14 @@ function getWins() {
 }
 
 function getLosses() {
-
-    var storedLosses = localStorage.getItem("loseCount");
+    var storedLosses = localStorage.getItem("loseCounter");
     if (storedLosses === null) {
-        loseCounter = 0;
+      loseCounter = 0;
     } else {
-        loseCounter = storedLosses;
+      loseCounter = storedLosses;
     }
     lose.textContent = loseCounter;
-}
+  }
 
 function checkWin() {
     if (chosenWord === blanksLetters.join(" ")) {
@@ -113,7 +112,7 @@ function checkWin() {
 function checkLetters(letter) {
     var letterInWord = false;
     for (var i = 0; i < numBlanks; i++) {
-        if (choseWord[i] === letter) {
+        if (chosenWord[i] === letter) {
             letterInWord = true;
         }
 }
@@ -123,7 +122,7 @@ if (letterInWord) {
             blanksLetters[j] = letter;
         }
     }
-    wordBlank.textContent = blanksLetters.join(" ");
+    wordBlank.textContent = blanksLetters.join("");
     }
 }
 
