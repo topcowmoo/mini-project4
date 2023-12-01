@@ -11,3 +11,21 @@ var loseCounter = 0;
 var isWin = false;
 var timer;
 var timerCount;
+
+var lettersInChosenWord = [];
+var blanksLetters = [];
+
+var words = ["variable", "array", "object", "modulus", "function", "string", "boolean"];
+
+function init() {
+    getWins();
+    getLosses();
+}
+
+function startGame() {
+    isWin = false;
+    timerCount = 10;
+    startButton.disabled = true;
+    renderBlanks()
+    startTimer()
+}
